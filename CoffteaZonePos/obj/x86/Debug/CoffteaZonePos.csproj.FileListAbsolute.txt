@@ -1,0 +1,5 @@
+c:\users\belletudoc\documents\visual studio 2010\Projects\CoffteaZonePos\CoffteaZonePos\bin\Debug\CoffteaZonePos.exe
+c:\users\belletudoc\documents\visual studio 2010\Projects\CoffteaZonePos\CoffteaZonePos\bin\Debug\CoffteaZonePos.pdb
+c:\users\belletudoc\documents\visual studio 2010\Projects\CoffteaZonePos\CoffteaZonePos\obj\x86\Debug\CoffteaZonePos.exe
+c:\users\belletudoc\documents\visual studio 2010\Projects\CoffteaZonePos\CoffteaZonePos\obj\x86\Debug\CoffteaZonePos.pdb
+C:\Users\belletudoc\documents\visual studio 2010\Projects\CoffteaZonePos\CoffteaZonePos\obj\x86\Debug\CoffteaZonePos.csprojResolveAssemblyReference.cache
