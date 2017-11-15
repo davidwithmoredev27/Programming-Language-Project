@@ -131,9 +131,9 @@ namespace CoffteaZonePos
             {
                 Console.WriteLine("You Reach Maximum of 20 Orders...");
                 Console.WriteLine("Please Replace your Orders Or Delete Your Orders");
-                Console.WriteLine("1.Delete your orders");
-                Console.WriteLine("2. Update your orders");
-                Console.Write("Select What do you want in your order:");
+                Console.WriteLine("1.Update your orders");
+                Console.WriteLine("2. Delete your orders");
+                Console.Write("Select what do you want to your order:");
                 OrderMax = Convert.ToInt32(Console.ReadLine());
                     
                 // call the update function to replace or update the orders
@@ -152,8 +152,6 @@ namespace CoffteaZonePos
         {
             while (true)
             { 
-                
-         
                 if (AddIdentifier == 1) {
                     //checkForOrderCount(orderCount);
                     if (OrderNumberConfirm == false)
@@ -262,7 +260,7 @@ namespace CoffteaZonePos
                             OrderNumberConfirm = false;
                             Console.WriteLine("1. yes");
                             Console.WriteLine("2. no");
-                            Console.Write("you want to add another order:");
+                            Console.Write("you want to add another order in this category:");
                           
                             OrderNumberVal = Convert.ToInt32(Console.ReadLine());
                             if (OrderNumberVal == 1) {
@@ -450,7 +448,7 @@ namespace CoffteaZonePos
                             OrderNumberConfirm = false;
                             Console.WriteLine("1. yes");
                             Console.WriteLine("2. no");
-                            Console.Write("you want to add another order:");
+                            Console.Write("you want to add another order in this category:");
 
                             OrderNumberVal = Convert.ToInt32(Console.ReadLine());
                             if (OrderNumberVal == 1)
@@ -642,7 +640,7 @@ namespace CoffteaZonePos
                             OrderNumberConfirm = false;
                             Console.WriteLine("1. yes");
                             Console.WriteLine("2. no");
-                            Console.Write("you want to add another order:");
+                            Console.Write("you want to add another order in this category:");
 
                             OrderNumberVal = Convert.ToInt32(Console.ReadLine());
                             if (OrderNumberVal == 1)
@@ -834,7 +832,7 @@ namespace CoffteaZonePos
                             OrderNumberConfirm = false;
                             Console.WriteLine("1. yes");
                             Console.WriteLine("2. no");
-                            Console.Write("you want to add another order:");
+                            Console.Write("you want to add another order in this category:");
 
                             OrderNumberVal = Convert.ToInt32(Console.ReadLine());
                             if (OrderNumberVal == 1)
@@ -1026,7 +1024,7 @@ namespace CoffteaZonePos
                             OrderNumberConfirm = false;
                             Console.WriteLine("1. yes");
                             Console.WriteLine("2. no");
-                            Console.Write("you want to add another order:");
+                            Console.Write("you want to add another order in this category:");
 
                             OrderNumberVal = Convert.ToInt32(Console.ReadLine());
                             if (OrderNumberVal == 1)
@@ -1217,7 +1215,7 @@ namespace CoffteaZonePos
                             OrderNumberConfirm = false;
                             Console.WriteLine("1. yes");
                             Console.WriteLine("2. no");
-                            Console.Write("you want to add another order:");
+                            Console.Write("you want to add another order in this category:");
 
                             OrderNumberVal = Convert.ToInt32(Console.ReadLine());
                             if (OrderNumberVal == 1)
@@ -1408,7 +1406,7 @@ namespace CoffteaZonePos
                             OrderNumberConfirm = false;
                             Console.WriteLine("1. yes");
                             Console.WriteLine("2. no");
-                            Console.Write("you want to add another order:");
+                            Console.Write("you want to add another order in this category:");
 
                             OrderNumberVal = Convert.ToInt32(Console.ReadLine());
                             if (OrderNumberVal == 1)
@@ -1471,10 +1469,6 @@ namespace CoffteaZonePos
                                 Console.WriteLine("invalid Input");
                                 goto RepeatAgain;
                             }
-
-                        }
-                        else
-                        {
 
                         }
                     }
@@ -1716,8 +1710,32 @@ namespace CoffteaZonePos
             Console.WriteLine("5. Platter");
             Console.WriteLine("6. Hot Drinks");
             Console.WriteLine("7. Iced Coffee");
+
+           
             while(true) {
-            
+                if (orderCount >= 1)
+                {
+                    while(true) {
+                        String xx;
+                        Console.WriteLine("yes or no");
+                        Console.Write("Go Back to The Welcome Screeen:");
+                        xx = Console.ReadLine();
+
+                        if (xx == "YES" || xx == "Yes" ||
+                            xx == "yes" || xx == "yEs" || xx == "yeS")
+                        {
+                            Console.Clear();
+                            WelcomeScreen();
+                            break;
+                        }
+                        else if(xx == "No" || xx == "NO" || xx == "nO" || xx == "no")
+                        {
+                            Console.WriteLine("Ok Continue...");
+                            goto continueOrder;
+                        }
+                    }
+                }
+            continueOrder:
                 Console.Write("please Add Your Order:");
                 Order = Convert.ToInt32(Console.ReadLine());
                 if(Order == 1)
@@ -1773,9 +1791,38 @@ namespace CoffteaZonePos
         }
         public static void Update()
         {
-            
 
-
+            if(orderCount == 0) {
+                Console.WriteLine("\t\t\t\tyou Dont have Any Order Yet!!");
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("\t\t\t\tPress any key to add orders");
+                Console.ReadKey();
+                Console.Clear();
+                Add();
+            }
+            else if (orderCount >= 1)
+            {
+                int iiii;
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("Your Order");
+                Console.WriteLine();
+                for (iiii = 0; iiii < OrdersName.Length; iiii++)
+                {
+                    if (OrdersPrice[iiii] <= 0)
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        break;
+                    }
+                    Console.WriteLine(OrdersName[iiii]);
+                }
+                Console.WriteLine("\tTotal");
+                Console.WriteLine("___________________");
+                Console.WriteLine("\t" + (Convert.ToDecimal(totalOrder)));
+                Pause(2);
+            }
         }
         public static void Display()
         {
@@ -1954,32 +2001,8 @@ namespace CoffteaZonePos
 
 
         }
-        public static void PrintReceipt()
-        {
-            FileStream ostrm;
-            StreamWriter writer;
-            TextWriter oldOut = Console.Out;
-            try
-            {
-                ostrm = new FileStream("./Redirect.txt", FileMode.OpenOrCreate, FileAccess.Write);
-                writer = new StreamWriter(ostrm);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Cannot open Redirect.txt for writing");
-                Console.WriteLine(e.Message);
-                return;
-            }
-            Console.SetOut(writer);
-            Console.WriteLine("This is a line of text");
-            Console.WriteLine("Everything written to Console.Write() or");
-            Console.WriteLine("Console.WriteLine() will be written to a file");
-            Console.SetOut(oldOut);
-            writer.Close();
-            ostrm.Close();
-            Console.WriteLine("Done");
-
-        
+        public static void PrintReceipt(){
+           
         }
         public static void WelcomeScreen()
         {
